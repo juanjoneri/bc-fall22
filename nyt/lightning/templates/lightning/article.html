@@ -1,0 +1,9 @@
+{% if article %}
+
+<h1>{{ article.title }}</h1>
+
+<p>{{ article.body }}</p>
+
+{% else %}
+    <p>Article not found.</p>
+{% endif %}
