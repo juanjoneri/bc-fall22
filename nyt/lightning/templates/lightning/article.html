@@ -15,6 +15,10 @@
 
             <p>Please make a lightning payment of {{purchase.article.price}} SATs to see read this article.</p>
 
+            {% load qr_code %}
+
+            {% qr_from_text purchase.payment_request size="s" %}
+
         {% endif %}
 
     {% endif %}
