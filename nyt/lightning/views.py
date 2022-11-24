@@ -35,12 +35,19 @@ def article(request, article_id):
     
     try:
         purchase = Purchase.objects.get(user=user, article=article)
+        
+        if not purchase.paid:
+            payload = {'payment_hash': purchase.payment_hash}
+            ln_response = requests.post(f'https://legend.lnbits.com/paywall/api/v1/paywalls/check_invoice/{article.paywall_id}', 
+                                        data=json.dumps(payload))
+            ln_json = ln_response.json()
+            purchase.paid = ln_json['paid']
+            purchase.save()
+        
     except:
         payload = {'amount': article.price}
-        headers = {'Content-type': 'application/json'}
         ln_response = requests.post(f'https://legend.lnbits.com/paywall/api/v1/paywalls/invoice/{article.paywall_id}', 
-                                    data=json.dumps(payload),
-                                    headers=headers)
+                                    data=json.dumps(payload))
         ln_json = ln_response.json()
         
         purchase = Purchase(
