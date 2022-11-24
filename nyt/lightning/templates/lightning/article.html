@@ -1,11 +1,26 @@
 {% if article %}
 
-<h1>{{ article.title }}</h1>
+    <p>Logged in as: {{ user.username }}</p>
 
-<p>{{ article.body }}</p>
+    <h1>{{ article.title }}</h1>
 
-<p>Logged in as: {{ user.username }}</p>
+    
+    {% if purchase %}
+
+        {% if purchase.paid %}
+
+            <p>{{ article.body }}</p>
+
+        {% else %}
+
+            <p>Please make a lightning payment of {{purchase.article.price}} SATs to see read this article.</p>
+
+        {% endif %}
+
+    {% endif %}
 
 {% else %}
+
     <p>Article not found.</p>
+
 {% endif %}

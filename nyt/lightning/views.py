@@ -1,10 +1,11 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
-from .models import Article
+from .models import Article, Purchase
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+import qrcode
 
 def signup(request):
     if request.method == 'POST':
@@ -28,5 +29,19 @@ def index(request):
 @login_required
 def article(request, article_id):
     article = Article.objects.get(id=article_id)
-    context = {'article': article, 'user': request.user}
+    user = request.user
+    
+    try:
+        purchase = Purchase.objects.get(user=user, article=article)
+    except:
+        purchase = Purchase(
+            user=user,
+            article=article,
+            payment_hash='',
+            payment_request='',
+            paid=False
+        )
+        purchase.save()
+    
+    context = {'article': article, 'user': user, 'purchase': purchase}
     return render(request, 'lightning/article.html', context)
