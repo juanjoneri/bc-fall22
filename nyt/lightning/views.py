@@ -6,6 +6,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 import qrcode
+import requests
+import json
 
 def signup(request):
     if request.method == 'POST':
@@ -34,11 +36,18 @@ def article(request, article_id):
     try:
         purchase = Purchase.objects.get(user=user, article=article)
     except:
+        payload = {'amount': article.price}
+        headers = {'Content-type': 'application/json'}
+        ln_response = requests.post(f'https://legend.lnbits.com/paywall/api/v1/paywalls/invoice/{article.paywall_id}', 
+                                    data=json.dumps(payload),
+                                    headers=headers)
+        ln_json = ln_response.json()
+        
         purchase = Purchase(
             user=user,
             article=article,
-            payment_hash='',
-            payment_request='',
+            payment_hash=ln_json['payment_hash'],
+            payment_request=ln_json['payment_request'],
             paid=False
         )
         purchase.save()
