@@ -1,7 +1,7 @@
 {% if articles %}
     <ul>
-    {% for article in articles %}
-        <li>{{ article.title }} <a href="{% url 'article' article_id=article.id %}">[open]</a></li>
+    {% for article in articles|dictsortreversed:"revenue" %}
+        <li>{{ article.title }} <a href="{% url 'article' article_id=article.id %}">[open]</a> | {{ article.price }} SATs | {{ article.revenue }} SATs</li>
     {% endfor %}
     </ul>
 {% else %}

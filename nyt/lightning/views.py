@@ -41,8 +41,12 @@ def article(request, article_id):
             ln_response = requests.post(f'https://legend.lnbits.com/paywall/api/v1/paywalls/check_invoice/{article.paywall_id}', 
                                         data=json.dumps(payload))
             ln_json = ln_response.json()
-            purchase.paid = ln_json['paid']
-            purchase.save()
+            paid = ln_json['paid']
+            if paid:
+                purchase.paid = paid
+                article.revenue += article.price
+                purchase.save()
+                article.save()
         
     except:
         payload = {'amount': article.price}
