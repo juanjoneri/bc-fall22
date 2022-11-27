@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
-from .models import Article, Purchase
+from .models import Article, Purchase, ArticleForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
@@ -65,3 +65,15 @@ def article(request, article_id):
     
     context = {'article': article, 'user': user, 'purchase': purchase}
     return render(request, 'lightning/article.html', context)
+
+
+@login_required
+def article_form(request):
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('index')
+    else:
+        form = ArticleForm()
+    return render(request, "lightning/article_form.html", {'form': form})
