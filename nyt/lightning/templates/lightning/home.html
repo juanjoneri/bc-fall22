@@ -1,0 +1,24 @@
+{% extends "lightning/base.html" %}
+
+{% block banner %}Search Reports{% endblock %}
+
+{% block body %}
+
+{% if articles %}
+    <ul>
+    {% for article in articles|dictsortreversed:"revenue" %}
+        <li>{{ article.title }} <a href="{% url 'article' article_id=article.id %}">[opesn]</a> | {{ article.price }} SATs | {{ article.revenue }} SATs</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No articles are available.</p>
+{% endif %}
+
+{% endblock %}
+
+
+
+
+
+
+
