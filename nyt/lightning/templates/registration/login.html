@@ -1,6 +1,6 @@
 {% extends "lightning/base.html" %}
 
-{% block banner %}Publish Article{% endblock %}
+{% block banner %}Log in{% endblock %}
 
 {% block body %}
 
@@ -12,21 +12,16 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h2>New Article</h2>
+                    <h2>Log In</h2>
                     <form method="post" novalidate>
                         {% csrf_token %}
-
-                        {{ form.title|as_crispy_field }}
-                        {{ form.body|as_crispy_field }}
-                        {{ form.price|as_crispy_field }}
+                        {{ form|crispy }}
                         <br>
-
-                        <button type="submit" class="btn btn-success">Publish</button>
+                        <button type="submit" class="btn btn-success">Log in</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

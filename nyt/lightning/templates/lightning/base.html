@@ -28,13 +28,13 @@
               </li>
             </ul>
 
-              {% if user %}
+              {% if logged_in %}
               <div class="btn-group" role="group">
                 <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                   {{ user.username }}
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Sign out</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
                 </ul>
               </div>
               {% else %}

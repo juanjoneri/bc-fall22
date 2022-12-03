@@ -4,11 +4,24 @@
 
 {% block body %}
 
-<h2>Sign up</h2>
-<form method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<button type="submit">Sign up</button>
-</form>
+{% load crispy_forms_tags %}
 
+<div class="container-sm">
+    <div class="row align-items-center">
+        <div class="col-sm-12 col-md-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <h2>Sign Up</h2>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <br>
+                        <button type="submit" class="btn btn-success">Sign up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

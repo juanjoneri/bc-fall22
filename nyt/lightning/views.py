@@ -26,6 +26,10 @@ def signup(request):
 def index(request):
     articles = Article.objects.values
     context = {'articles': articles}
+    
+    if request.user and request.user.username != '':
+        context['logged_in'] = True
+    
     return render(request, 'lightning/index.html', context)
 
 
@@ -64,7 +68,7 @@ def article(request, article_id):
         )
         purchase.save()
     
-    context = {'article': article, 'user': user, 'purchase': purchase}
+    context = {'article': article, 'user': user, 'purchase': purchase, 'logged_in': True}
     return render(request, 'lightning/article.html', context)
 
 
@@ -77,4 +81,4 @@ def article_form(request):
         return redirect('index')
     else:
         form = ArticleForm()
-    return render(request, "lightning/article_form.html", {'form': form})
+    return render(request, "lightning/article_form.html", {'form': form, 'logged_in': True})

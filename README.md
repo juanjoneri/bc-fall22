@@ -6,3 +6,7 @@ Run
 ```
 python3 manage.py runserver
 ```
+
+LN Bits Paywall:
+
+https://legend.lnbits.com/paywall/?usr=14ad60b5f0eb40cca1e63d1660db57f9
