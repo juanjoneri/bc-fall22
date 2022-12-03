@@ -1,9 +1,45 @@
-{% if articles %}
-    <ul>
-    {% for article in articles|dictsortreversed:"revenue" %}
-        <li>{{ article.title }} <a href="{% url 'article' article_id=article.id %}">[open]</a> | {{ article.price }} SATs | {{ article.revenue }} SATs</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No articles are available.</p>
-{% endif %}
+{% extends "lightning/base.html" %}
+
+{% block banner %}Home{% endblock %}
+
+{% block body %}
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+
+            {% if articles %}
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price (SATs)</th>
+                    <th scope="col">Revenue (SATs) &darr;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for article in articles|dictsortreversed:"revenue" %}
+
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td class="text-start"><a href="{% url 'article' article_id=article.id %}">{{ article.title }}</a></td>
+                        <td>{{article.price }}</td>
+                        <td>{{ article.revenue }}</td>
+                      </tr>
+
+                    {% endfor %}
+
+                </tbody>
+              </table>
+
+            {% else %}
+            <p>No articles are available.</p>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

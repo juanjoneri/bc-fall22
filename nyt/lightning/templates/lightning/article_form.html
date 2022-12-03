@@ -1,6 +1,32 @@
-<h2>New Article</h2>
-<form method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<button type="submit">Publish</button>
-</form>
+{% extends "lightning/base.html" %}
+
+{% block banner %}Publish Article{% endblock %}
+
+{% block body %}
+
+
+{% load crispy_forms_tags %}
+
+<div class="container-sm">
+    <div class="row align-items-center">
+        <div class="col-sm-12 col-md-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <h2>New Article</h2>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+
+                        {{ form.title|as_crispy_field }}
+                        {{ form.body|as_crispy_field }}
+                        {{ form.price|as_crispy_field }}
+                        <br>
+
+                        <button type="submit" class="btn btn-success">Publish</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

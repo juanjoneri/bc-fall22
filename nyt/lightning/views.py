@@ -28,11 +28,6 @@ def index(request):
     context = {'articles': articles}
     return render(request, 'lightning/index.html', context)
 
-def home(request):
-    articles = Article.objects.values
-    context = {'articles': articles}
-    return render(request, 'lightning/home.html', context)
-
 
 @login_required
 def article(request, article_id):
