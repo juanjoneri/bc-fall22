@@ -16,6 +16,10 @@ Our website allows users to post articles, and for readers to pay Sat's to read 
 10. The article will be behind a paywall. You can open cash app to pay for the Ligtning invoice in the QR code.
 11. Refresh page and you should see article.
 
+## Helpful Links
+01. Django [https://docs.djangoproject.com/en/4.1/]
+02. LN Bits [https://legend.lnbits.co/]
+
 
 
 Run
