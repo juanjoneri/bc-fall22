@@ -3,14 +3,14 @@ Final project for ECE 382V Blockchain and Smart Contracts
 
 Lightning Articles is a website that allows users to post articles, and readers to pay Bitcoin using the lightning network to unlock and read those articles. We used the LN Bits APIs and packages to setup a paywall. The backend is written in Python 3 using the Django framework. The database is SQL Lite. That is where we store our data including articles and user information. Users can sign in an out in order to read articles that they previously paid for. The main screen shows a view of all articles sorted by "revenue", where the most popular articles and raise to the top of the charts.
 
-Description  | Image |
--------------|:-----------:
-Home screen  |  ![home](home.png)
-Sign in screen  |  ![home](signin.png)
-Sign up screen  |  ![home](signup.png)
-Article screen  |  ![home](article.png)
-Invoice screen  |  ![home](invoice.png)
-Publish screen  |  ![home](publish.png)
+Description     | Image      |
+----------------|:-----------:
+Home screen     |  <img src="/home.png" width="400" />
+Sign in screen  |  <img src="/signin.png" width="400" />
+Sign up screen  |  <img src="/signup.png" width="400" />
+Article screen  |  <img src="/article.png" width="400" />
+Invoice screen  |  <img src="/invoice.png" width="400" />
+Publish screen  |  <img src="/publish.png" width="400" />
 
 
 ### Future Features
