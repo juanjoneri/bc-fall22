@@ -20,7 +20,7 @@ Our website allows users to post articles, and for readers to pay Sat's to read 
 01. Django [https://docs.djangoproject.com/en/4.1/]
 02. LN Bits [https://legend.lnbits.co/]
 
-
+## Other
 
 Run
 ```
